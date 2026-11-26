@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI增強範例9-2</title>
+  <style>
+    /* 基礎設定 */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "PMingLiU", "MingLiU", serif;
+      padding: 20px;
+      background-color: #ffffff;
+    }
+
+    /* 主選單與子選單共用樣式 */
+    .menu,
+    .menu ul {
+      list-style: none;
+      background-color: #f4fafc; /* 選單背景色 */
+      /* 增修：選單框線採 2px 的同背景加深色系 */
+      border: 2px solid #9ec9dc;
+      /* 增修：設定選單能有 5% 圓角 */
+      border-radius: 5%;
+    }
+
+    /* 第一層橫向選單 */
+    .menu {
+      display: inline-flex;
+    }
+
+    .menu li {
+      position: relative;
+      min-width: 140px;
+    }
+
+    .menu a {
+      display: block;
+      padding: 12px 18px;
+      color: #000000;
+      text-decoration: none;
+      font-size: 20px;
+      white-space: nowrap;
+    }
+
+    .menu a:hover {
+      background-color: #e3f2f8;
+    }
+
+    /* 第一層子選單：緊貼上層底部並向右偏移 5% 顯示（避免出現空白縫隙導致滑鼠移出關閉） */
+    .menu > li > ul {
+      display: none;
+      position: absolute;
+      /* 增修：子選單在其對應上層選單右下方偏移 5% 處開始顯示 */
+      top: 100%;
+      left: 5%;
+      z-index: 10;
+      /* 增修：子選單框線採 2px 的同背景加深色系 */
+      border: 2px solid #9ec9dc;
+      /* 增修：設定子選單能有 5% 圓角 */
+      border-radius: 5%;
+    }
+
+    /* 第二層（含）以上子選單：緊貼上層右側並向下偏移 5% 顯示 */
+    .menu ul ul {
+      display: none;
+      position: absolute;
+      /* 增修：子選單在其對應上層選單右下方偏移 5% 處開始顯示 */
+      top: 5%;
+      left: 100%;
+      z-index: 20;
+      /* 增修：子選單框線採 2px 的同背景加深色系 */
+      border: 2px solid #9ec9dc;
+      /* 增修：設定子選單能有 5% 圓角 */
+      border-radius: 5%;
+    }
+
+    /* 增修：在子選單邊緣建立透明緩衝區，防止滑鼠經過圓角或交界處時中斷 hover */
+    .menu ul::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+    }
+
+    /* 滑鼠移入上層項目時展開子選單 */
+    .menu li:hover > ul {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <ul class="menu">
+    <li>
+      <a href="#">台北景點</a>
+      <ul>
+        <li><a href="#">台北101</a></li>
+        <li><a href="#">迪化街</a></li>
+        <li><a href="#">士林夜市</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">澎湖景點</a>
+      <ul>
+        <li><a href="#">跨海大橋</a></li>
+        <li><a href="#">沙灘</a></li>
+        <li><a href="#">觀音亭</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">台南景點</a>
+      <ul>
+        <li><a href="#">赤崁樓</a></li>
+        <li><a href="#">台南孔廟</a></li>
+        <li>
+          <a href="#">台南小吃&gt;&gt;</a>
+          <ul>
+            <li><a href="#">八寶冰</a></li>
+            <li><a href="#">蚵仔煎</a></li>
+            <li><a href="#">米糕</a></li>
+            <li><a href="#">牛肉湯</a></li>
+            <li><a href="#">肉燥飯</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</body>
+</html>
